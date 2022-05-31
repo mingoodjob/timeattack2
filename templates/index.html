@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>타임어택</title>
+</head>
+
+<body>
+
+    <form action="/article/" method="post">
+        {% csrf_token %}
+        영화제목<input name="title">
+        설명<input name="content">
+        카테고리
+        <select name="category" id="">
+            {% for i in category %}
+            <option>{{ i.category }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">확인</button>
+    </form>
+    <div style="margin-top: 10px">
+        총 영화 갯수 <span style="color: red; background: yellow;">{{ article | length }}</span>
+
+        {% for i in article %}
+
+        <div style="margin-top: 5px">{{ i.title }} / {{ i.content }} / {{ i.category }}</div>
+
+        {% endfor %}
+    </div>
+</body>
+
+</html>
